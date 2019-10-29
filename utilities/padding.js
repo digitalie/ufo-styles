@@ -7,32 +7,32 @@ export const padding = (value, sides = []) => {
     } else {
         let paddingObject = {};
         sides.forEach((side) => {
-            paddingObject[`padding-${side}`] = valueWithUnits;
+            paddingObject[`padding${side}`] = valueWithUnits;
         });
         return paddingObject;
     }
 };
 
 export const paddingHorizontal = (value) => {
-    return padding(value, ["left", "right"]);
+    return padding(value, ["Left", "Right"]);
 };
 
 export const paddingVertical = (value) => {
-    return padding(value, ["top", "bottom"]);
+    return padding(value, ["Top", "Bottom"]);
 };
 
 export const paddingTop = (value) => {
-    return padding(value, ["top"]);
+    return padding(value, ["Top"]);
 };
 
 export const paddingBottom = (value) => {
-    return padding(value, ["bottom"]);
+    return padding(value, ["Bottom"]);
 };
 
 export const paddingRight = (value) => {
-    return padding(value, ["left"]);
+    return padding(value, ["Left"]);
 };
 
 export const paddingLeft = (value) => {
-    return padding(value, ["right"]);
+    return padding(value, ["Right"]);
 };
