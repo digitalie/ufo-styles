@@ -1,6 +1,5 @@
-import ufo from '../lib/ufo';
+import { formatUnitValue } from '../lib/format';
 
 export const fontSize = (value) => {
-    const valueWithUnits = isNaN(value) ? value : (ufo.config.units ? value + ufo.config.units : value);
-    return { fontSize: valueWithUnits }
+    return { fontSize: formatUnitValue(value) }
 };

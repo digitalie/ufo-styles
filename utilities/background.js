@@ -1,4 +1,4 @@
-import { formatColorValue } from '../lib/color';
+import { formatColorValue } from '../lib/format';
 
 export const backgroundColor = (...value) => {
     return {

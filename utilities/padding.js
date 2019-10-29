@@ -1,38 +1,48 @@
-import ufo from '../lib/ufo';
+import { formatUnitValue, formatUnitArrayValue } from '../lib/format'
 
-export const padding = (value, sides = []) => {
-    const valueWithUnits = isNaN(value) ? value : value + ufo.config.units;
-    if (sides.length === 0) {
-        return { padding: valueWithUnits };
-    } else {
-        let paddingObject = {};
-        sides.forEach((side) => {
-            paddingObject[`padding${side}`] = valueWithUnits;
-        });
-        return paddingObject;
-    }
+export const padding = (...value) => {
+    return {
+        padding: formatUnitArrayValue(value)
+    };
 };
 
 export const paddingHorizontal = (value) => {
-    return padding(value, ["Left", "Right"]);
+    const formattedValue = formatUnitValue(value);
+
+    return {
+        paddingLeft: formattedValue,
+        paddingRight: formattedValue,
+    };
 };
 
 export const paddingVertical = (value) => {
-    return padding(value, ["Top", "Bottom"]);
+    const formattedValue = formatUnitValue(value);
+    return {
+        paddingTop: formattedValue,
+        paddingBottom: formattedValue,
+    };
 };
 
 export const paddingTop = (value) => {
-    return padding(value, ["Top"]);
+    return {
+        paddingTop: formatUnitValue(value),
+    };
 };
 
 export const paddingBottom = (value) => {
-    return padding(value, ["Bottom"]);
+    return {
+        paddingBottom: formatUnitValue(value),
+    };
 };
 
 export const paddingRight = (value) => {
-    return padding(value, ["Left"]);
+    return {
+        paddingRight: formatUnitValue(value),
+    };
 };
 
 export const paddingLeft = (value) => {
-    return padding(value, ["Right"]);
+    return {
+        paddingLeft: formatUnitValue(value),
+    };
 };
