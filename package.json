@@ -4,7 +4,7 @@
   "description": "Utility-first object-based styles",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/digitalie/utility-first-object-styles/issues"
   },
-  "homepage": "https://github.com/digitalie/utility-first-object-styles#readme"
+  "homepage": "https://github.com/digitalie/utility-first-object-styles#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0"
+  }
 }
