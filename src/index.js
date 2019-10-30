@@ -7,3 +7,5 @@ export * from './utilities/inset';
 export * from './utilities/padding';
 export * from './utilities/margin';
 export * from './utilities/position';
+export * from './utilities/size';
+export * from './lib/compose';

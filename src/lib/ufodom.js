@@ -1,4 +1,5 @@
 import { debounce } from './debounce';
+import { compose } from './compose';
 import ufo from './ufo';
 
 class UfoDom {
@@ -52,7 +53,7 @@ class UfoDom {
 
     createStyleTag(cssInJsIObjects) {
         const stateSpecificCssInJsObjects = cssInJsIObjects.filter(x => x.stylesForState);
-        const defaultCssInJsObject = ufo.compose(cssInJsIObjects.filter(x => !x.stylesForState));
+        const defaultCssInJsObject = compose.apply(this, cssInJsIObjects.filter(x => !x.stylesForState));
 
         const newClassName = this.createNewClassName();
         const newStyleElement = document.createElement('style');
@@ -60,7 +61,7 @@ class UfoDom {
         newStyleElement.id = newClassName;
         newStyleElement.innerHTML = `.${newClassName} {${this.toCssString(defaultCssInJsObject)}}`;
         stateSpecificCssInJsObjects.forEach((stateSpecificCssInJsObject) => {
-            newStyleElement.innerHTML += `.${newClassName}:${stateSpecificCssInJsObject.stylesForState} {${this.toCssString(ufo.compose(stateSpecificCssInJsObject.cssInJsIObjects))}}`;
+            newStyleElement.innerHTML += `.${newClassName}:${stateSpecificCssInJsObject.stylesForState} {${this.toCssString(stateSpecificCssInJsObject.cssInJsIObject)}}`;
         });
 
         document.body.appendChild(newStyleElement);
@@ -72,3 +73,24 @@ class UfoDom {
 }
 export default new UfoDom();
 
+export const hover = (...cssInJsIObjects) => {
+    return stylesForState("hover", cssInJsIObjects);
+}
+export const active = (...cssInJsIObjects) => {
+    return stylesForState("active", cssInJsIObjects);
+}
+export const focus = (...cssInJsIObjects) => {
+    return stylesForState("focus", cssInJsIObjects);
+}
+export const focusWithin = (...cssInJsIObjects) => {
+    return stylesForState("focus-within", cssInJsIObjects);
+}
+export const visited = (...cssInJsIObjects) => {
+    return stylesForState("visited", cssInJsIObjects);
+}
+const stylesForState = (state, cssInJsIObjects) => {
+    return {
+        stylesForState: state,
+        cssInJsIObject: compose.apply(this, cssInJsIObjects)
+    };
+}

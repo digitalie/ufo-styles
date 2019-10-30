@@ -20,22 +20,3 @@ export const useStylesAsClassName = (cssInJsIObjects, dependencies) => {
 
     return className;
 }
-
-export const hover = (cssInJsIObjects) => {
-    return stylesForState("hover", cssInJsIObjects);
-}
-export const active = (cssInJsIObjects) => {
-    return stylesForState("active", cssInJsIObjects);
-}
-export const focus = (cssInJsIObjects) => {
-    return stylesForState("focus", cssInJsIObjects);
-}
-export const focusWithin = (cssInJsIObjects) => {
-    return stylesForState("focus-within", cssInJsIObjects);
-}
-export const visited = (cssInJsIObjects) => {
-    return stylesForState("visited", cssInJsIObjects);
-}
-export const stylesForState = (state, cssInJsIObjects) => {
-    return { stylesForState: state, cssInJsIObjects };
-}
