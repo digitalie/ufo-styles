@@ -1,11 +1,8 @@
 {
   "name": "ufo",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "description": "Utility-first object-based styles",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
