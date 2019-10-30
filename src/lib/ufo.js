@@ -8,4 +8,3 @@ export class Ufo {
     }
 }
 export default new Ufo();
-

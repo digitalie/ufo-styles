@@ -1,40 +1,46 @@
-import { formatUnitValue } from '../lib/format';
-import { compose } from '../lib/compose';
+import { formatUnitValue } from "../lib/format";
+import { compose } from "../lib/compose";
 
-export const padding = (value) => {
+export const padding = value => {
     return {
-        padding: formatUnitValue(value),
+        padding: formatUnitValue(value)
     };
 };
 
-export const paddingTop = (value) => {
+export const paddingTop = value => {
     return {
-        paddingTop: formatUnitValue(value),
+        paddingTop: formatUnitValue(value)
     };
 };
 
-export const paddingBottom = (value) => {
+export const paddingBottom = value => {
     return {
-        paddingBottom: formatUnitValue(value),
+        paddingBottom: formatUnitValue(value)
     };
 };
 
-export const paddingRight = (value) => {
+export const paddingRight = value => {
     return {
-        paddingRight: formatUnitValue(value),
+        paddingRight: formatUnitValue(value)
     };
 };
 
-export const paddingLeft = (value) => {
+export const paddingLeft = value => {
     return {
-        paddingLeft: formatUnitValue(value),
+        paddingLeft: formatUnitValue(value)
     };
 };
 
-export const paddingHorizontal = (value) => {
-    return compose(paddingRight(value), paddingLeft(value));
+export const paddingHorizontal = value => {
+    return compose(
+        paddingRight(value),
+        paddingLeft(value)
+    );
 };
 
-export const paddingVertical = (value) => {
-    return compose(paddingTop(value), paddingBottom(value));
+export const paddingVertical = value => {
+    return compose(
+        paddingTop(value),
+        paddingBottom(value)
+    );
 };

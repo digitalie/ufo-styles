@@ -1,12 +1,12 @@
-import ufoDom from './lib/ufodom';
-import { useState, useEffect } from 'react';
+import ufoDom from "./lib/ufodom";
+import { useState, useEffect } from "react";
 
-export const configure = (config) => {
+export const configure = config => {
     ufoDom.configure(config);
-}
+};
 
 export const useStylesAsClassName = (cssInJsIObjects, dependencies) => {
-    const [className, setClassName] = useState('');
+    const [className, setClassName] = useState("");
 
     useEffect(() => {
         const newClassName = ufoDom.createStyleTag(cssInJsIObjects);
@@ -15,8 +15,8 @@ export const useStylesAsClassName = (cssInJsIObjects, dependencies) => {
 
         return () => {
             ufoDom.removeUnusedStyleTags();
-        }
+        };
     }, dependencies);
 
     return className;
-}
+};

@@ -1,5 +1,5 @@
-import ufo from './lib/ufo';
+import ufo from "./lib/ufo";
 
-export const configure = (config) => {
+export const configure = config => {
     ufo.configure(config);
 };

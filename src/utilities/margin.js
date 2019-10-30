@@ -1,40 +1,46 @@
-import { formatUnitValue } from '../lib/format';
-import { compose } from '../lib/compose';
+import { formatUnitValue } from "../lib/format";
+import { compose } from "../lib/compose";
 
-export const margin = (value) => {
+export const margin = value => {
     return {
-        margin: formatUnitValue(value),
+        margin: formatUnitValue(value)
     };
 };
 
-export const marginTop = (value) => {
+export const marginTop = value => {
     return {
-        marginTop: formatUnitValue(value),
+        marginTop: formatUnitValue(value)
     };
 };
 
-export const marginBottom = (value) => {
+export const marginBottom = value => {
     return {
-        marginBottom: formatUnitValue(value),
+        marginBottom: formatUnitValue(value)
     };
 };
 
-export const marginRight = (value) => {
+export const marginRight = value => {
     return {
-        marginRight: formatUnitValue(value),
+        marginRight: formatUnitValue(value)
     };
 };
 
-export const marginLeft = (value) => {
+export const marginLeft = value => {
     return {
-        marginLeft: formatUnitValue(value),
+        marginLeft: formatUnitValue(value)
     };
 };
 
-export const marginHorizontal = (value) => {
-    return compose(marginRight(value), marginLeft(value));
+export const marginHorizontal = value => {
+    return compose(
+        marginRight(value),
+        marginLeft(value)
+    );
 };
 
-export const marginVertical = (value) => {
-    return compose(marginTop(value), marginBottom(value));
+export const marginVertical = value => {
+    return compose(
+        marginTop(value),
+        marginBottom(value)
+    );
 };

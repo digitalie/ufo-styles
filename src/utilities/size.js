@@ -1,34 +1,40 @@
-import { formatUnitValue } from '../lib/format'
-import { compose } from '../lib/compose';
+import { formatUnitValue } from "../lib/format";
+import { compose } from "../lib/compose";
 
-export const minimumWidth = (value) => {
+export const minimumWidth = value => {
     return {
-        minWidth: formatUnitValue(value),
-    };
-}
-
-export const width = (value) => {
-    return {
-        width: formatUnitValue(value),
+        minWidth: formatUnitValue(value)
     };
 };
 
-export const minimumHeight = (value) => {
+export const width = value => {
     return {
-        minHeight: formatUnitValue(value),
+        width: formatUnitValue(value)
     };
-}
+};
 
-export const height = (value) => {
+export const minimumHeight = value => {
     return {
-        height: formatUnitValue(value),
+        minHeight: formatUnitValue(value)
+    };
+};
+
+export const height = value => {
+    return {
+        height: formatUnitValue(value)
     };
 };
 
 export const size = (widthValue, heightValue) => {
-    return compose(width(widthValue), height(heightValue));
+    return compose(
+        width(widthValue),
+        height(heightValue)
+    );
 };
 
 export const minimumSize = (widthValue, heightValue) => {
-    return compose(minimumWidth(widthValue), minimumHeight(heightValue));
+    return compose(
+        minimumWidth(widthValue),
+        minimumHeight(heightValue)
+    );
 };
