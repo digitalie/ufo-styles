@@ -1,3 +1,3 @@
-export const compose = (...cssInJsIObjects) => {
-    return Object.assign({}, ...cssInJsIObjects);
+export const compose = (...objects) => {
+    return Object.assign({}, ...objects);
 }
