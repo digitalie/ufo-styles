@@ -1,8 +1,8 @@
-import { formatUnitValue, formatUnitArrayValue } from '../lib/format'
+import { formatUnitValue } from '../lib/format'
 
-export const padding = (...value) => {
+export const padding = (value) => {
     return {
-        padding: formatUnitArrayValue(value)
+        padding: formatUnitValue(value),
     };
 };
 

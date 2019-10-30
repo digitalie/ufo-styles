@@ -5,4 +5,5 @@ export * from './utilities/flex';
 export * from './utilities/fontSize';
 export * from './utilities/inset';
 export * from './utilities/padding';
+export * from './utilities/margin';
 export * from './utilities/position';
