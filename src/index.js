@@ -8,4 +8,5 @@ export * from './utilities/padding';
 export * from './utilities/margin';
 export * from './utilities/position';
 export * from './utilities/size';
+export * from './utilities/color';
 export * from './lib/compose';
