@@ -20,10 +20,11 @@ export const formatColorValue = (...values) => {
     console.error("incorrect number of parameters passed to formatColorValue", values);
 }
 
+export const formatUrlValue = (...values) => {
+    return values.map(value => `url('${value}')`).join(', ');
+}
+
 export const formatUnitArrayValue = (values = []) => {
-    if(values.length === 0) {
-        console.error("incorrect number of values passed to formatUnitArrayValue", values);
-    }
     return values.map(formatUnitValue).join(' ');
 }
 

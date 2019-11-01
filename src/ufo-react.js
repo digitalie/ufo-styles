@@ -16,7 +16,7 @@ export const useStylesAsClassName = (cssInJsIObjects, dependencies) => {
         return () => {
             ufoDom.removeUnusedStyleTags();
         }
-    }, dependencies);
+    }, dependencies || []);
 
     return className;
 }
