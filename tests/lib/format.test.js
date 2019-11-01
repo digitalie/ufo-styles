@@ -1,4 +1,4 @@
-import { formatColorValue } from "../../lib/format";
+import { formatColorValue } from '../../src/lib/format'
 
 describe("ufo:lib:format", () => {
     test("formatColorValue", () => {
