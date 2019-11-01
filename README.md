@@ -1,6 +1,6 @@
-# Utility-First-Object-Styles (UFO) styles 
-A javascript library for creating style objects, inspired by utility first CSS techniques.
+# Utility-first object-based (UFO) styles 
 
+A javascript library for creating style objects, inspired by utility first CSS techniques.
 
 ## Installation
 
@@ -8,10 +8,9 @@ A javascript library for creating style objects, inspired by utility first CSS t
 $ npm install https://github.com/digitalie/utility-first-object-styles.git
 ```
 
-## Usage in react native
+## Usage in React Native
 
 ```javascript
-
 import { 
   displayFlex, 
   flexItemsCenter, 
@@ -49,13 +48,12 @@ const Componsnet = () => {
         </View>
             
 };
-
 ```
 
-## Usage in react
+## Usage in React
 
 ```javascript
-import { useUfoClassName } from '../ufo/src/ufo-react';
+import { useUfoClassName } from 'ufo/ufo-react';
 import { 
     displayFlex, 
     flexItemsCenter, 
@@ -66,8 +64,6 @@ import {
     size,
     compose
   } from 'ufo';
-
-
 
 function Component() {
 
