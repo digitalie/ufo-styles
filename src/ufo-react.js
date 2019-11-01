@@ -1,9 +1,9 @@
-import ufoDom from './lib/ufodom';
-import { useState, useEffect } from 'react';
+import ufoDom from "./lib/ufodom";
+import { useState, useEffect } from "react";
 
-export const configure = (config) => {
+export const configure = config => {
     ufoDom.configure(config);
-}
+};
 
 export const useUfoClassName = (...cssInJsIObjects) => {
     const [className, setClassName] = useState('');
@@ -23,4 +23,4 @@ export const useUfoClassName = (...cssInJsIObjects) => {
     }, dependencies || []);
 
     return className;
-}
+};
