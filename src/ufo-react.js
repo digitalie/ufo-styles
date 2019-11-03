@@ -6,9 +6,9 @@ export const configure = config => {
 };
 
 export const useUfoClassName = (...cssInJsIObjects) => {
-    const [className, setClassName] = useState('');
+    const [className, setClassName] = useState("");
     let dependencies;
-    if(Array.isArray(cssInJsIObjects[cssInJsIObjects.length - 1])){
+    if (Array.isArray(cssInJsIObjects[cssInJsIObjects.length - 1])) {
         dependencies = cssInJsIObjects.pop();
     }
 
@@ -19,7 +19,7 @@ export const useUfoClassName = (...cssInJsIObjects) => {
 
         return () => {
             ufoDom.removeUnusedStyleTags();
-        }
+        };
     }, dependencies || []);
 
     return className;

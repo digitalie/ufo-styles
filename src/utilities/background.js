@@ -1,19 +1,23 @@
-import { formatColorValue, formatUrlValue, formatUnitArrayValue } from '../lib/format';
-import { compose } from '../lib/compose';
+import {
+    formatColorValue,
+    formatUrlValue,
+    formatUnitArrayValue
+} from "../lib/format";
+import { compose } from "../lib/compose";
 
 // color
 export const backgroundColor = (...value) => {
     return {
         backgroundColor: formatColorValue.apply(this, value)
     };
-}
+};
 
 // just image url
-export const backgroundImage = (value) => {
+export const backgroundImage = value => {
     return {
         backgroundImage: formatUrlValue(value)
     };
-}
+};
 
 // image attachement
 export const backgroundScroll = { backgroundAttachment: "scroll" };
@@ -54,7 +58,7 @@ export const backgroundLeft = { backgroundPosition: "left" };
 export const backgroundRight = { backgroundPosition: "right" };
 export const backgroundCenter = { backgroundPosition: "center" };
 
-// repeat 
+// repeat
 export const backgroundRepeatAll = { backgroundRepeat: "repeat" };
 export const backgroundRepeatNone = { backgroundRepeat: "no-repeat" };
 export const backgroundRepeatHorizontal = { backgroundRepeat: "repeat-x" };
@@ -71,41 +75,40 @@ export const backgroundSize = (...value) => {
 };
 
 // useful functions for basic background images
-export const backgroundImageCover = (value) => {
+export const backgroundImageCover = value => {
     return compose(
         backgroundImage(value),
-        backgroundCover,
+        backgroundCover
     );
-}
+};
 
-export const backgroundImageStretch = (value) => {
+export const backgroundImageStretch = value => {
     return compose(
         backgroundImage(value),
-        backgroundStretch,
+        backgroundStretch
     );
-}
+};
 
-export const backgroundImageContain = (value) => {
+export const backgroundImageContain = value => {
+    return compose(
+        backgroundImage(value),
+        backgroundContain
+    );
+};
+
+export const backgroundImageContainRepeatNone = value => {
     return compose(
         backgroundImage(value),
         backgroundContain,
+        backgroundRepeatNone
     );
-}
-
-export const backgroundImageContainRepeatNone = (value) => {
-    return compose(
-        backgroundImage(value),
-        backgroundContain,
-        backgroundRepeatNone,
-    );
-}
+};
 
 // css accepts arrays of background images for each class, along with arrays of each attribute, such as position or attachment
 // this function combines multiple background objects into the correct array format for css to understand
 export const backgroundList = (...backgrounds) => {
     const combinedBackground = {};
-    const backgroundAttributeDefaults =
-    {
+    const backgroundAttributeDefaults = {
         backgroundImage: "none",
         backgroundAttachment: "scroll",
         backgroundBlendMode: "normal",
@@ -113,18 +116,30 @@ export const backgroundList = (...backgrounds) => {
         backgroundOrigin: "padding-box",
         backgroundPosition: "0% 0%",
         backgroundRepeat: "repeat",
-        backgroundSize: "auto",
-    }
+        backgroundSize: "auto"
+    };
 
     for (var backgroundAttributeName in backgroundAttributeDefaults) {
-        if (backgroundAttributeDefaults.hasOwnProperty(backgroundAttributeName)) {
-            const combinedValues = backgrounds.map(background => background[backgroundAttributeName]);
-            
+        if (
+            backgroundAttributeDefaults.hasOwnProperty(backgroundAttributeName)
+        ) {
+            const combinedValues = backgrounds.map(
+                background => background[backgroundAttributeName]
+            );
+
             if (combinedValues.filter(value => value).length > 0) {
-                combinedBackground[backgroundAttributeName] = combinedValues.map(combinedValue => combinedValue || backgroundAttributeDefaults[backgroundAttributeName]).join(', ');
+                combinedBackground[
+                    backgroundAttributeName
+                ] = combinedValues
+                    .map(
+                        combinedValue =>
+                            combinedValue ||
+                            backgroundAttributeDefaults[backgroundAttributeName]
+                    )
+                    .join(", ");
             }
         }
-    };
+    }
     console.log(combinedBackground);
     return combinedBackground;
-}
+};
