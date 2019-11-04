@@ -1,6 +1,6 @@
 name: build
 
-on: [push, pull_request, release]
+on: [pull_request, release]
 
 jobs:
   build:
@@ -9,7 +9,7 @@ jobs:
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
-          version: 12.x
+          node-version: 12.x
       - name: Checkout the release tag
         uses: actions/checkout@v1
       - name: Install
@@ -25,4 +25,4 @@ jobs:
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: npm publish
-    
+
