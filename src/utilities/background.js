@@ -19,7 +19,7 @@ export const backgroundImage = value => {
     };
 };
 
-// image attachement
+// image attachment
 export const backgroundScroll = { backgroundAttachment: "scroll" };
 export const backgroundFixed = { backgroundAttachment: "fixed" };
 export const backgroundLocal = { backgroundAttachment: "local" };
@@ -121,7 +121,10 @@ export const backgroundList = (...backgrounds) => {
 
     for (var backgroundAttributeName in backgroundAttributeDefaults) {
         if (
-            backgroundAttributeDefaults.hasOwnProperty(backgroundAttributeName)
+            Object.prototype.hasOwnProperty.call(
+                backgroundAttributeDefaults,
+                backgroundAttributeName
+            )
         ) {
             const combinedValues = backgrounds.map(
                 background => background[backgroundAttributeName]
