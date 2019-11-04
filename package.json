@@ -1,5 +1,5 @@
 {
-  "name": "ufo-styles",
+  "name": "@digitalie/ufo-styles",
   "version": "0.1.0",
   "description": "Utility-first object-based styles",
   "main": "src/index.js",
