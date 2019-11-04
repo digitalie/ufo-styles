@@ -12,6 +12,8 @@ jobs:
           version: 12.x
       - name: Checkout the release tag
         uses: actions/checkout@v1
+      - name: Install
+        run: npm install
       - name: Build
         run: npm run build
       - name: Lint
