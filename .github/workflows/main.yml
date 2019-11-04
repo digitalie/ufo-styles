@@ -1,6 +1,9 @@
 name: build
 
-on: [pull_request, release]
+on:
+  release:
+    types: [published]
+  pull_request:
 
 jobs:
   build:
@@ -21,7 +24,7 @@ jobs:
       - name: Test
         run: npm test
       - name: Publish
-        if: github.event == 'release'
+        if: github.event_name == 'release'
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: npm publish
