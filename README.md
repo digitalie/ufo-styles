@@ -5,7 +5,7 @@ A javascript library for creating style objects, inspired by utility first CSS t
 ## Installation
 
 ```bash
-$ npm install https://github.com/digitalie/utility-first-object-styles.git
+$ npm install https://github.com/digitalie/ufo-styles.git
 ```
 
 ## Usage in React Native
@@ -20,7 +20,7 @@ import {
   backgroundColor, 
   size,
   compose
-} from 'ufo';
+} from 'ufo-styles';
 
 const flexCenter = compose(
     displayFlex,
@@ -53,7 +53,7 @@ const Componsnet = () => {
 ## Usage in React
 
 ```javascript
-import { useUfoClassName } from 'ufo/ufo-react';
+import { useUfoClassName } from 'ufo-styles/ufo-react';
 import { 
     displayFlex, 
     flexItemsCenter, 
@@ -63,7 +63,7 @@ import {
     backgroundColor, 
     size,
     compose
-  } from 'ufo';
+  } from 'ufo-styles';
 
 function Component() {
 
