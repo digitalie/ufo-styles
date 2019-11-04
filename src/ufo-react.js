@@ -5,15 +5,15 @@ export const configure = config => {
     ufoDom.configure(config);
 };
 
-export const useUfoClassName = (...cssInJsIObjects) => {
+export const useUfoClassName = (...styleObjects) => {
     const [className, setClassName] = useState("");
     let dependencies;
-    if (Array.isArray(cssInJsIObjects[cssInJsIObjects.length - 1])) {
-        dependencies = cssInJsIObjects.pop();
+    if (Array.isArray(styleObjects[styleObjects.length - 1])) {
+        dependencies = styleObjects.pop();
     }
 
     useEffect(() => {
-        const newClassName = ufoDom.createStyleTag(cssInJsIObjects);
+        const newClassName = ufoDom.createStyleTag(styleObjects);
 
         setClassName(newClassName);
 
