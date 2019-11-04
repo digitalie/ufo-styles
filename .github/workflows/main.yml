@@ -23,27 +23,8 @@ jobs:
         run: npm run lint
       - name: Test
         run: npm test
-      - name: Upload
-        uses: actions/upload-artifact@v1
-        with:
-          name: built
-          path: .
-
-  publish:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'release'
-    needs: [build]
-    steps:
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - name: Download
-        uses: actions/download-artifact@v1
-        with:
-          name: built
       - name: Publish
-        working-directory: built
+        if: github.event_name == 'release'
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: |
