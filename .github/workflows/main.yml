@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CI: true
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
@@ -25,7 +28,4 @@ jobs:
         run: npm test
       - name: Publish
         if: github.event_name == 'release'
-        env:
-          CI: true
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --access public
