@@ -9,4 +9,5 @@ export * from "./utilities/margin";
 export * from "./utilities/position";
 export * from "./utilities/size";
 export * from "./utilities/color";
+export * from "./utilities/shadow";
 export * from "./lib/compose";

@@ -106,7 +106,7 @@ export const backgroundImageContainRepeatNone = value => {
 
 // css accepts arrays of background images for each class, along with arrays of each attribute, such as position or attachment
 // this function combines multiple background objects into the correct array format for css to understand
-export const backgroundList = (...backgrounds) => {
+export const backgrounds = (...backgrounds) => {
     const combinedBackground = {};
     const backgroundAttributeDefaults = {
         backgroundImage: "none",
