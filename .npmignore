@@ -1,0 +1,10 @@
+.git
+.github
+node_modules
+tests
+.editorconfig
+.eslistrc.json
+.gitignore
+.npmignore
+.npmrc
+babel.config.js

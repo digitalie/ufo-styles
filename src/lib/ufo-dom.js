@@ -1,5 +1,4 @@
 import { compose } from "./compose";
-import ufo from "./ufo";
 
 export default {
     cssInJsAllIds: [],

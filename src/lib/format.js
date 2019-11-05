@@ -28,12 +28,12 @@ export const formatColorValue = (...values) => {
 };
 
 export const formatUrlValue = (...values) => {
-    return values.map(value => `url('${value}')`).join(', ');
-}
+    return values.map(value => `url('${value}')`).join(", ");
+};
 
 export const formatUnitArrayValue = (values = []) => {
-    return values.map(formatUnitValue).join(' ');
-}
+    return values.map(formatUnitValue).join(" ");
+};
 
 export const formatUnitValue = value => {
     if (!isNaN(value) && ufo.config.units) {
