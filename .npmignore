@@ -6,4 +6,5 @@ tests
 .eslistrc.json
 .gitignore
 .npmignore
+.npmrc
 babel.config.js

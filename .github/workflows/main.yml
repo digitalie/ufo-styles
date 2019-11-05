@@ -26,7 +26,6 @@ jobs:
       - name: Publish
         if: github.event_name == 'release'
         env:
+          CI: true
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          npm publish --access public
+        run: npm publish --access public
