@@ -1,10 +1,6 @@
-export class Ufo {
-    constructor() {
-        this.config = {};
-    }
-
+export default {
+    config: {},
     configure(customConfig) {
         this.config = { ...this.config, ...customConfig };
     }
-}
-export default new Ufo();
+};

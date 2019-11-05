@@ -1,37 +1,36 @@
-import { debounce } from "./debounce";
 import { compose } from "./compose";
 import ufo from "./ufo";
 
-class UfoDom {
-    constructor() {
-        ufo.config = {
-            units: "rem"
-        };
+export default {
+    cssInJsAllIds: [],
+    cssInJsLatestId: 0,
 
-        this.cssInJsAllIds = [];
-        this.cssInJsLatestId = 0;
-
-        this.removeUnusedStyleTags = debounce(this.removeUnusedStyleTags, 50);
-    }
-
-    removeUnusedStyleTags() {
+    removeUnusedStyleTags: function() {
         for (var i = this.cssInJsAllIds.length - 1; i >= 0; i--) {
             let cssInJsId = this.cssInJsAllIds[i];
             if (document.body.getElementsByClassName(cssInJsId).length === 0) {
                 this.cssInJsAllIds.splice(i, 1);
                 const element = document.getElementById(cssInJsId);
                 if (element) {
-                    document.body.removeChild(element);
+                    element.remove();
                 }
             }
         }
-    }
+    },
 
-    configure(customConfig) {
-        this.config = { ...this.config, ...customConfig };
-    }
+    removeStyleTagById: function(id) {
+        var index = this.cssInJsAllIds.indexOf(id);
+        if (index > -1) {
+            this.cssInJsAllIds.splice(index, 1)
+        }
 
-    toCssString(cssInJsObject) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.remove();
+        }
+    },
+
+    toCssString: function (cssInJsObject) {
         const styleRules = document.createElement("span").style;
 
         Object.keys(cssInJsObject).forEach(styleRuleKey => {
@@ -46,16 +45,16 @@ class UfoDom {
         });
 
         return styleRules.cssText;
-    }
+    },
 
-    createNewClassName() {
+    createNewClassName: function() {
         this.cssInJsLatestId += 1;
         const newCssInJsId = `ufo_styles_${this.cssInJsLatestId}`;
         this.cssInJsAllIds.push(newCssInJsId);
         return newCssInJsId;
-    }
+    },
 
-    createStyleTag(cssInJsIObjects) {
+    createStyleTag: function(cssInJsIObjects, className) {
         const stateSpecificCssInJsObjects = cssInJsIObjects.filter(
             x => x.stylesForState
         );
@@ -64,7 +63,7 @@ class UfoDom {
             cssInJsIObjects.filter(x => !x.stylesForState)
         );
 
-        const newClassName = this.createNewClassName();
+        const newClassName = className ? className : this.createNewClassName();
         const newStyleElement = document.createElement("style");
 
         newStyleElement.id = newClassName;
@@ -74,7 +73,7 @@ class UfoDom {
         stateSpecificCssInJsObjects.forEach(stateSpecificCssInJsObject => {
             newStyleElement.innerHTML += `.${newClassName}:${
                 stateSpecificCssInJsObject.stylesForState
-            } {${this.toCssString(stateSpecificCssInJsObject.cssInJsIObject)}}`;
+                } {${this.toCssString(stateSpecificCssInJsObject.cssInJsIObject)}}`;
         });
 
         document.body.appendChild(newStyleElement);
@@ -82,7 +81,6 @@ class UfoDom {
         return newClassName;
     }
 }
-export default new UfoDom();
 
 export const hover = (...cssInJsIObjects) => {
     return stylesForState("hover", cssInJsIObjects);

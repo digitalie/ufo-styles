@@ -125,6 +125,6 @@ export const backgroundList = (...backgrounds) => {
             }
         }
     };
-    console.log(combinedBackground);
+
     return combinedBackground;
 }

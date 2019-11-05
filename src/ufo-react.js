@@ -1,26 +1,21 @@
-import ufoDom from "./lib/ufodom";
-import { useState, useEffect } from "react";
-
-export const configure = config => {
-    ufoDom.configure(config);
-};
+import ufoDom from "./lib/ufo-dom";
+import { useEffect, useMemo } from "react";
 
 export const useUfoClassName = (...cssInJsIObjects) => {
-    const [className, setClassName] = useState('');
     let dependencies;
-    if(Array.isArray(cssInJsIObjects[cssInJsIObjects.length - 1])){
+    if (Array.isArray(cssInJsIObjects[cssInJsIObjects.length - 1])) {
         dependencies = cssInJsIObjects.pop();
     }
 
+    const newClassName = useMemo(() => {
+        return ufoDom.createStyleTag(cssInJsIObjects)
+    }, dependencies || []);
+    
     useEffect(() => {
-        const newClassName = ufoDom.createStyleTag(cssInJsIObjects);
-
-        setClassName(newClassName);
-
         return () => {
-            ufoDom.removeUnusedStyleTags();
+            ufoDom.removeStyleTagById(newClassName);
         }
     }, dependencies || []);
 
-    return className;
+    return newClassName;
 };
