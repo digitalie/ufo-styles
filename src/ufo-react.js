@@ -8,13 +8,13 @@ export const useUfoClassName = (...cssInJsIObjects) => {
     }
 
     const newClassName = useMemo(() => {
-        return ufoDom.createStyleTag(cssInJsIObjects)
+        return ufoDom.createStyleTag(cssInJsIObjects);
     }, dependencies || []);
-    
+
     useEffect(() => {
         return () => {
             ufoDom.removeStyleTagById(newClassName);
-        }
+        };
     }, dependencies || []);
 
     return newClassName;

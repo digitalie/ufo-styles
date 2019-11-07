@@ -4,7 +4,7 @@ export default {
     cssInJsAllIds: [],
     cssInJsLatestId: 0,
 
-    removeUnusedStyleTags: function() {
+    removeUnusedStyleTags: function () {
         for (var i = this.cssInJsAllIds.length - 1; i >= 0; i--) {
             let cssInJsId = this.cssInJsAllIds[i];
             if (document.body.getElementsByClassName(cssInJsId).length === 0) {
@@ -17,10 +17,10 @@ export default {
         }
     },
 
-    removeStyleTagById: function(id) {
+    removeStyleTagById: function (id) {
         var index = this.cssInJsAllIds.indexOf(id);
         if (index > -1) {
-            this.cssInJsAllIds.splice(index, 1)
+            this.cssInJsAllIds.splice(index, 1);
         }
 
         const element = document.getElementById(id);
@@ -46,14 +46,14 @@ export default {
         return styleRules.cssText;
     },
 
-    createNewClassName: function() {
+    createNewClassName: function () {
         this.cssInJsLatestId += 1;
         const newCssInJsId = `ufo_styles_${this.cssInJsLatestId}`;
         this.cssInJsAllIds.push(newCssInJsId);
         return newCssInJsId;
     },
 
-    createStyleTag: function(cssInJsIObjects, className) {
+    createStyleTag: function (cssInJsIObjects, className) {
         const stateSpecificCssInJsObjects = cssInJsIObjects.filter(
             x => x.stylesForState
         );
@@ -70,16 +70,14 @@ export default {
             defaultCssInJsObject
         )}}`;
         stateSpecificCssInJsObjects.forEach(stateSpecificCssInJsObject => {
-            newStyleElement.innerHTML += `.${newClassName}:${
-                stateSpecificCssInJsObject.stylesForState
-                } {${this.toCssString(stateSpecificCssInJsObject.cssInJsIObject)}}`;
+            newStyleElement.innerHTML += `.${newClassName}:${stateSpecificCssInJsObject.stylesForState} {${this.toCssString(stateSpecificCssInJsObject.cssInJsIObject)}}`;
         });
 
         document.body.appendChild(newStyleElement);
 
         return newClassName;
     }
-}
+};
 
 export const hover = (...cssInJsIObjects) => {
     return stylesForState("hover", cssInJsIObjects);
