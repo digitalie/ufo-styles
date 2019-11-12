@@ -36,3 +36,8 @@ export const textAlignJustifyAll = textAlign("justify-all");
 export const textAlignStart = textAlign("start");
 export const textAlignEnd = textAlign("end");
 export const textAlignParent = textAlign("match-parent");
+
+export const textLetterSpacing = value => {
+    return { letterSpacing: formatUnitValue(value) };
+};
+export const textLefferSpacingNormal = textLetterSpacing("normal");
