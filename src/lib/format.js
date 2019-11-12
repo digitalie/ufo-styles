@@ -27,6 +27,16 @@ export const formatColorValue = (...values) => {
     );
 };
 
+export const parseColorValue = (value) => {
+    var matchColors = /rgba\((\d{1,3}), (\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
+    var match = matchColors.exec(value);
+    if (match !== null) {
+        return match;
+    }
+
+    return value;
+};
+
 export const formatUrlValue = (...values) => {
     return values.map(value => `url('${value}')`).join(", ");
 };
@@ -36,9 +46,18 @@ export const formatUnitArrayValue = (values = []) => {
 };
 
 export const formatUnitValue = value => {
-    if (!isNaN(value) && ufo.config.units) {
+    if (!isNaN(value) && value !== "" && ufo.config.units) {
         return `${value}${ufo.config.units}`;
     }
 
     return value;
 };
+
+export const parseUnitValue = value => {
+    if (isNaN(value) && value && ufo.config.units) {
+        return value.replace(ufo.config.units, '');
+    }
+
+    return value;
+};
+
