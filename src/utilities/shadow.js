@@ -35,7 +35,6 @@ export const shadows = (...shadows) => {
 };
 
 const parseShadowValue = value => {
-    console.log("parseShadowValue", value);
     const values = value.trim().split(" ");
 
     if (!value.trim().toLowerCase().startsWith("inset")) {
@@ -53,7 +52,7 @@ const parseShadowValue = value => {
 };
 
 export const shadow = (...boxShadowObjects) => {
-    var bs = boxShadow(
+    return boxShadow(
         boxShadowObjects
             .map(boxShadowObject => parseShadowValue(boxShadowObject.boxShadow))
             .reduce((composedShadow, shadow) => {
@@ -67,9 +66,6 @@ export const shadow = (...boxShadowObjects) => {
                 };
             }, shadowDefaults)
     );
-
-    console.log("bs", bs);
-    return bs;
 };
 
 export const shadowInset = boxShadow(
