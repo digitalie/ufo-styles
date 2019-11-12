@@ -3,6 +3,7 @@ export * from "./utilities/border";
 export * from "./utilities/display";
 export * from "./utilities/flex";
 export * from "./utilities/font";
+export * from "./utilities/text";
 export * from "./utilities/inset";
 export * from "./utilities/padding";
 export * from "./utilities/margin";

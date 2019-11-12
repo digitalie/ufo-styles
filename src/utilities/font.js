@@ -1,9 +1,5 @@
 import { formatUnitValue, formatColorValue } from "../lib/format";
 
-export const fontColor = (...value) => {
-    return { color: formatColorValue.apply(this, value) };
-};
-
 export const fontWeight = value => {
     return { fontWeight: formatUnitValue(value) };
 };
@@ -18,27 +14,6 @@ export const fontStyle = value => {
 export const fontStyleNormal = fontStyle("normal");
 export const fontStyleItalic = fontStyle("italic");
 export const fontStyleOblique = fontStyle("oblique");
-
-export const fontSize = value => {
-    return { fontSize: formatUnitValue(value) };
-};
-export const fontSizeLarger = fontSize("larger");
-export const fontSizeSmaller = fontSize("smaller");
-
-export const fontSizes = {
-    extraExtraSmall: "xx-small",
-    extraSmall: "x-small",
-    small: "small",
-    medium: "medium",
-    large: "large",
-    extraLarge: "x-large",
-    extraExtraLarge: "xx-large",
-    tripleExtraLarge: "xxx-large"
-};
-
-export const fontlineHeight = value => {
-    return { lineHeight: formatUnitValue(value) };
-};
 
 export const fontFamilyGenerics = {
     serif: "serif",
