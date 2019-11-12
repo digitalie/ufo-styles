@@ -4,7 +4,6 @@ export const textColor = (...value) => {
     return { color: formatColorValue.apply(this, value) };
 };
 
-
 export const textSize = value => {
     return { fontSize: formatUnitValue(value) };
 };
@@ -25,3 +24,15 @@ export const textSizes = {
 export const textLineHeight = value => {
     return { lineHeight: formatUnitValue(value) };
 };
+
+export const textAlign = value => {
+    return { textAlign: value };
+};
+export const textAlignLeft = textAlign("left");
+export const textAlignRight = textAlign("right");
+export const textAlignCenter = textAlign("center");
+export const textAlignJustify = textAlign("justify");
+export const textAlignJustifyAll = textAlign("justify-all");
+export const textAlignStart = textAlign("start");
+export const textAlignEnd = textAlign("end");
+export const textAlignParent = textAlign("match-parent");
