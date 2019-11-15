@@ -3,110 +3,72 @@ import {
     formatColorValue,
     parseUnitValue,
     parseColorValue,
+    formatUrlValue
 } from "../lib/format";
 import { compose } from "../lib/compose";
 
-const shadowDefaults = {
-    inset: "",
+export const shadows = shadows => {
+    return { boxShadow: shadows.map(shadow => shadow.boxShadow).join(", ") };
+};
+
+export const shadow = {
+    _inset: "",
     offsetX: "0",
     offsetY: "0",
     blurRadius: "0",
     spreadRadius: "0",
-    color: "black"
-};
+    color: "black",
 
-const formatShadowValue = shadowObject => {
-    return [
-        shadowObject.inset,
-        formatUnitValue(shadowObject.offsetX),
-        formatUnitValue(shadowObject.offsetY),
-        formatUnitValue(shadowObject.blurRadius),
-        formatUnitValue(shadowObject.spreadRadius),
-        formatColorValue.apply(this, Array.isArray(shadowObject.color) ? shadowObject.color : [shadowObject.color ])
-    ]
-        .join(" ")
-        .trim();
-};
+    inset: function() {
+        return compose(
+            this,
+            { _inset: "inset" }
+        ).formatShadowValue();
+    },
 
-const boxShadow = value => ({ boxShadow: formatShadowValue(value) });
-
-export const shadows = (...shadows) => {
-    return { boxShadow: shadows.map(shadow => shadow.boxShadow).join(", ") };
-};
-
-const parseShadowValue = value => {
-    const values = value.trim().split(" ");
-
-    if (!value.trim().toLowerCase().startsWith("inset")) {
-        values.unshift(shadowDefaults.inset);
-    }
-
-    return {
-        inset: values[0],
-        offsetX: parseUnitValue(values[1]),
-        offsetY: parseUnitValue(values[2]),
-        blurRadius: parseUnitValue(values[3]),
-        spreadRadius: parseUnitValue(values[4]),
-        color: parseColorValue(values.slice(5).join(" ")),
-    };
-};
-
-export const shadow = (...boxShadowObjects) => {
-    return boxShadow(
-        boxShadowObjects
-            .map(boxShadowObject => parseShadowValue(boxShadowObject.boxShadow))
-            .reduce((composedShadow, shadow) => {
-                return {
-                    inset: shadow.inset !== shadowDefaults.inset && shadow.inset !== composedShadow.inset ? shadow.inset : composedShadow.inset,
-                    offsetX: shadow.offsetX !== shadowDefaults.offsetX && shadow.offsetX !== composedShadow.offsetX ? shadow.offsetX : composedShadow.offsetX,
-                    offsetY: shadow.offsetY !== shadowDefaults.offsetY && shadow.offsetY !== composedShadow.offsetY ? shadow.offsetY : composedShadow.offsetY,
-                    blurRadius: shadow.blurRadius !== shadowDefaults.blurRadius && shadow.blurRadius !== composedShadow.blurRadius ? shadow.blurRadius : composedShadow.blurRadius,
-                    spreadRadius: shadow.spreadRadius !== shadowDefaults.spreadRadius && shadow.spreadRadius !== composedShadow.spreadRadius ? shadow.spreadRadius : composedShadow.spreadRadius,
-                    color: shadow.color !== shadowDefaults.color && shadow.color !== composedShadow.color ? shadow.color : composedShadow.color,
-                };
-            }, shadowDefaults)
-    );
-};
-
-export const shadowInset = boxShadow(
-    compose(
-        shadowDefaults,
-        { inset: "inset" }
-    )
-);
-
-export const shadowOffset = (offsetX, offsetY) => {
-    return boxShadow(
-        compose(
-            shadowDefaults,
+    offset: function(offsetX, offsetY) {
+        return compose(
+            this,
             { offsetX, offsetY }
-        )
-    );
-};
+        ).formatShadowValue();
+    },
 
-export const shadowBlur = blurRadius => {
-    return boxShadow(
-        compose(
-            shadowDefaults,
+    blur: function(blurRadius) {
+        return compose(
+            this,
             { blurRadius }
-        )
-    );
-};
+        ).formatShadowValue();
+    },
 
-export const shadowSpread = spreadRadius => {
-    return boxShadow(
-        compose(
-            shadowDefaults,
+    spread: function(spreadRadius) {
+        return compose(
+            this,
             { spreadRadius }
-        )
-    );
-};
+        ).formatShadowValue();
+    },
 
-export const shadowColor = (...color) => {
-    return boxShadow(
-        compose(
-            shadowDefaults,
+    color: function(...color) {
+        return compose(
+            this,
             { color: color }
-        )
-    );
+        ).formatShadowValue();
+    },
+
+    formatShadowValue: function() {
+        this.boxShadow = [
+            this._inset,
+            formatUnitValue(this.offsetX),
+            formatUnitValue(this.offsetY),
+            formatUnitValue(this.blurRadius),
+            formatUnitValue(this.spreadRadius),
+            formatColorValue.apply(
+                this,
+                Array.isArray(this.color) ? this.color : [this.color]
+            )
+        ]
+            .join(" ")
+            .trim();
+
+        return this;
+    }
 };
