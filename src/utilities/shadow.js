@@ -17,7 +17,7 @@ export const shadow = {
     offsetY: "0",
     blurRadius: "0",
     spreadRadius: "0",
-    color: "black",
+    _color: "black",
 
     inset: function() {
         return compose(
@@ -50,7 +50,7 @@ export const shadow = {
     color: function(...color) {
         return compose(
             this,
-            { color: color }
+            { _color: color }
         ).formatShadowValue();
     },
 
@@ -63,7 +63,7 @@ export const shadow = {
             formatUnitValue(this.spreadRadius),
             formatColorValue.apply(
                 this,
-                Array.isArray(this.color) ? this.color : [this.color]
+                Array.isArray(this._color) ? this._color : [this._color]
             )
         ]
             .join(" ")

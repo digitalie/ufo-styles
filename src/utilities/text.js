@@ -2,7 +2,6 @@ import { formatUnitValue, formatColorValue } from "../lib/format";
 import { compose } from "../lib/compose";
 
 export const text = {
-
     color: function(...value) {
         return compose(
             this,
@@ -191,7 +190,7 @@ export const textAlignStart = textAlign("start");
 export const textAlignEnd = textAlign("end");
 export const textAlignParent = textAlign("match-parent");
 
-    export const textAllowWordBreak = {
-        overflowWrap: "break-word",
-        wordWrap: "break-word"
-    };
+export const textAllowWordBreak = {
+    overflowWrap: "break-word",
+    wordWrap: "break-word"
+};

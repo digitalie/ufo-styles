@@ -1,5 +1,3 @@
-import { compose } from "./lib/compose";
-
 export * from "./utilities/background";
 export * from "./utilities/border";
 export * from "./utilities/display";
