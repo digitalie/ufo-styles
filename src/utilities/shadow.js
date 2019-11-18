@@ -1,11 +1,8 @@
 import {
     formatUnitValue,
     formatColorValue,
-    parseUnitValue,
-    parseColorValue,
-    formatUrlValue
 } from "../lib/format";
-import { compose } from "../lib/compose";
+import { merge } from "../lib/merge";
 
 export const shadows = shadows => {
     return { boxShadow: shadows.map(shadow => shadow.boxShadow).join(", ") };
@@ -13,42 +10,42 @@ export const shadows = shadows => {
 
 export const shadow = {
     _inset: "",
-    offsetX: "0",
-    offsetY: "0",
-    blurRadius: "0",
-    spreadRadius: "0",
+    _offsetX: "0",
+    _offsetY: "0",
+    _blurRadius: "0",
+    _spreadRadius: "0",
     _color: "black",
 
     inset: function() {
-        return compose(
+        return merge(
             this,
             { _inset: "inset" }
         ).formatShadowValue();
     },
 
     offset: function(offsetX, offsetY) {
-        return compose(
+        return merge(
             this,
-            { offsetX, offsetY }
+            { _offsetX: offsetX, _offsetY: offsetY }
         ).formatShadowValue();
     },
 
     blur: function(blurRadius) {
-        return compose(
+        return merge(
             this,
-            { blurRadius }
+            { _blurRadius: blurRadius }
         ).formatShadowValue();
     },
 
     spread: function(spreadRadius) {
-        return compose(
+        return merge(
             this,
-            { spreadRadius }
+            { _spreadRadius: spreadRadius }
         ).formatShadowValue();
     },
 
     color: function(...color) {
-        return compose(
+        return merge(
             this,
             { _color: color }
         ).formatShadowValue();
@@ -57,10 +54,10 @@ export const shadow = {
     formatShadowValue: function() {
         this.boxShadow = [
             this._inset,
-            formatUnitValue(this.offsetX),
-            formatUnitValue(this.offsetY),
-            formatUnitValue(this.blurRadius),
-            formatUnitValue(this.spreadRadius),
+            formatUnitValue(this._offsetX),
+            formatUnitValue(this._offsetY),
+            formatUnitValue(this._blurRadius),
+            formatUnitValue(this._spreadRadius),
             formatColorValue.apply(
                 this,
                 Array.isArray(this._color) ? this._color : [this._color]

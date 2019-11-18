@@ -1,4 +1,4 @@
-import { compose } from "./compose";
+import { merge } from "./merge";
 
 export default {
     cssInJsAllIds: [],
@@ -57,7 +57,7 @@ export default {
         const stateSpecificCssInJsObjects = cssInJsIObjects.filter(
             x => x.stylesForState
         );
-        const defaultCssInJsObject = compose.apply(
+        const defaultCssInJsObject = merge.apply(
             this,
             cssInJsIObjects.filter(x => !x.stylesForState)
         );
@@ -97,6 +97,6 @@ export const visited = (...cssInJsIObjects) => {
 const stylesForState = (state, cssInJsIObjects) => {
     return {
         stylesForState: state,
-        cssInJsIObject: compose.apply(this, cssInJsIObjects)
+        cssInJsIObject: merge.apply(this, cssInJsIObjects)
     };
 };

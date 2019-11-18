@@ -1,6 +1,5 @@
 import { formatColorValue, formatUnitValue, formatUnitArrayValue } from "../lib/format";
-import { compose } from "../lib/compose";
-import { stringLiteral } from "@babel/types";
+import { merge } from "../lib/merge";
 
 const formatBorderValue = (...value) => {
     if (value.length === 1) {
@@ -89,14 +88,14 @@ export const borderLeft = (...value) => {
 };
 
 export const borderHorizontal = (...value) => {
-    return compose(
+    return merge(
         borderRight.apply(this, value),
         borderLeft.apply(this, value),
     );
 };
 
 export const borderVertical = (...value) => {
-    return compose(
+    return merge(
         borderTop.apply(this, value),
         borderBottom.apply(this, value),
     );

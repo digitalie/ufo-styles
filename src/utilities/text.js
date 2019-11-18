@@ -1,9 +1,9 @@
 import { formatUnitValue, formatColorValue } from "../lib/format";
-import { compose } from "../lib/compose";
+import { merge } from "../lib/merge";
 
 export const text = {
     color: function(...value) {
-        return compose(
+        return merge(
             this,
             {
                 color: formatColorValue.apply(this, value)
@@ -12,7 +12,7 @@ export const text = {
     },
 
     height: function(value) {
-        return compose(
+        return merge(
             this,
             {
                 fontSize: formatUnitValue(value)
@@ -21,7 +21,7 @@ export const text = {
     },
 
     boxHeight: function(value) {
-        return compose(
+        return merge(
             this,
             {
                 lineHeight: formatUnitValue(value)
@@ -30,7 +30,7 @@ export const text = {
     },
 
     letterSpace: function(value) {
-        return compose(
+        return merge(
             this,
             {
                 letterSpacing: formatUnitValue(value)
@@ -39,7 +39,7 @@ export const text = {
     },
 
     wordSpace: function(value) {
-        return compose(
+        return merge(
             this,
             {
                 wordSpacing: formatUnitValue(value)
@@ -69,77 +69,77 @@ export const text = {
                 return `"${name}"`;
             })
             .join(", ");
-        return compose(
+        return merge(
             this,
             { fontFamily }
         );
     },
 
     italic: function() {
-        return compose(
+        return merge(
             this,
             { fontStyle: "italic" }
         );
     },
 
     bold: function() {
-        return compose(
+        return merge(
             this,
             { fontWeight: "bold" }
         );
     },
 
     underline: function() {
-        return compose(
+        return merge(
             this,
             { textDecoration: "underline" }
         );
     },
 
     strikeThrough: function() {
-        return compose(
+        return merge(
             this,
             { textDecoration: "line-through" }
         );
     },
 
     noUnderline: function() {
-        return compose(
+        return merge(
             this,
             { textDecoration: "none" }
         );
     },
 
     capitalize: function() {
-        return compose(
+        return merge(
             this,
             { textTransform: "capitalize" }
         );
     },
 
     upperCase: function() {
-        return compose(
+        return merge(
             this,
             { textTransform: "uppercase" }
         );
     },
 
     lowerCase: function() {
-        return compose(
+        return merge(
             this,
             { textTransform: "lowercase" }
         );
     },
 
     originalCase: function() {
-        return compose(
+        return merge(
             this,
             { textTransform: "none" }
         );
     },
 
     indent: function(value) {
-        return compose(
+        return merge(
             this,
             {
                 textIndent: formatUnitValue(value)
@@ -148,7 +148,7 @@ export const text = {
     },
 
     rightToLeft: function() {
-        return compose(
+        return merge(
             this,
             {
                 direction: "rtl"
@@ -157,7 +157,7 @@ export const text = {
     },
 
     leftToRight: function() {
-        return compose(
+        return merge(
             this,
             {
                 direction: "ltr"

@@ -1,5 +1,5 @@
 import { formatUnitValue } from "../lib/format";
-import { compose } from "../lib/compose";
+import { merge } from "../lib/merge";
 
 export const margin = value => {
     return {
@@ -32,14 +32,14 @@ export const marginLeft = value => {
 };
 
 export const marginHorizontal = value => {
-    return compose(
+    return merge(
         marginRight(value),
         marginLeft(value)
     );
 };
 
 export const marginVertical = value => {
-    return compose(
+    return merge(
         marginTop(value),
         marginBottom(value)
     );

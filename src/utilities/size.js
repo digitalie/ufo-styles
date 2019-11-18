@@ -1,5 +1,5 @@
 import { formatUnitValue } from "../lib/format";
-import { compose } from "../lib/compose";
+import { merge } from "../lib/merge";
 
 export const minimumWidth = value => {
     return {
@@ -26,14 +26,14 @@ export const height = value => {
 };
 
 export const size = (widthValue, heightValue) => {
-    return compose(
+    return merge(
         width(widthValue),
         height(heightValue)
     );
 };
 
 export const minimumSize = (widthValue, heightValue) => {
-    return compose(
+    return merge(
         minimumWidth(widthValue),
         minimumHeight(heightValue)
     );

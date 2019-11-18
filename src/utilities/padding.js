@@ -1,5 +1,5 @@
 import { formatUnitValue } from "../lib/format";
-import { compose } from "../lib/compose";
+import { merge } from "../lib/merge";
 
 export const padding = value => {
     return {
@@ -32,14 +32,14 @@ export const paddingLeft = value => {
 };
 
 export const paddingHorizontal = value => {
-    return compose(
+    return merge(
         paddingRight(value),
         paddingLeft(value)
     );
 };
 
 export const paddingVertical = value => {
-    return compose(
+    return merge(
         paddingTop(value),
         paddingBottom(value)
     );
