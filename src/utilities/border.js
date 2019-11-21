@@ -1,17 +1,7 @@
 import { formatColorValue, formatUnitValue, formatUnitArrayValue } from "../lib/format";
 import { merge } from "../lib/merge";
 
-const formatBorderValue = (...value) => {
-    if (value.length === 1) {
-        return formatUnitValue(value[0]);
-    } else if (value.length === 2) {
-        return `${formatUnitValue(value[0])} ${value[1]}`;
-    } else {
-        return `${formatUnitValue(value[0])} ${value[1]} ${formatColorValue.apply(this, value.slice(2))}`;
-    }
-}
-
-export const borderStyles = {
+const borderStyles = {
     DOTTED: "dotted",
     DASHED: "dashed",
     SOLID: "solid",
@@ -24,79 +14,126 @@ export const borderStyles = {
     HIDDEN: "hidden",
 };
 
-export const borderColor = (...value) => {
-    return { borderColor: formatColorValue.apply(this, value) };
+export const border = {
+    _cssBorderPropertyName: "border",
+
+    color: function (...color) {
+        return merge(
+            this,
+            { _color: color }
+        ).formatBorderValue();
+    },
+
+    width: function (width) {
+        return merge(
+            this,
+            { _width: width }
+        ).formatBorderValue();
+    },
+
+    none: function () {
+        return merge(
+            this,
+            { _style: borderStyles.NONE }
+        ).formatBorderValue();
+    },
+
+    dotted: function () {
+        return merge(
+            this,
+            { _style: borderStyles.DOTTED }
+        ).formatBorderValue();
+    },
+
+    dashed: function () {
+        return merge(
+            this,
+            { _style: borderStyles.DASHED }
+        ).formatBorderValue();
+    },
+
+    solid: function () {
+        return merge(
+            this,
+            { _style: borderStyles.SOLID }
+        ).formatBorderValue();
+    },
+    groove: function () {
+        return merge(
+            this,
+            { _style: borderStyles.GROOVE }
+        ).formatBorderValue();
+    },
+    ridge: function () {
+        return merge(
+            this,
+            { _style: borderStyles.RIDGE }
+        ).formatBorderValue();
+    },
+    inset: function () {
+        return merge(
+            this,
+            { _style: borderStyles.INSET }
+        ).formatBorderValue();
+    },
+    outset: function () {
+        return merge(
+            this,
+            { _style: borderStyles.OUTSET }
+        ).formatBorderValue();
+    },
+    hidden: function () {
+        return merge(
+            this,
+            { _style: borderStyles.HIDDEN }
+        ).formatBorderValue();
+    },
+
+    formatBorderValue: function () {
+        if (typeof this._width !== 'undefined') {
+            this[this._cssBorderPropertyName + "Width"] = formatUnitValue(this._width);
+        }
+
+        if (typeof this._style !== 'undefined') {
+            this[this._cssBorderPropertyName + "Style"] = this._style;
+        }
+
+        if (typeof this._color !== 'undefined') {
+            this[this._cssBorderPropertyName + "Color"] = formatColorValue.apply(
+                this,
+                Array.isArray(this._color) ? this._color : [this._color]
+            )
+        }
+
+        return this;
+    }
 };
 
-export const borderStyle = (...value) => {
-    return { borderStyle: formatUnitArrayValue(value) };
-};
+export const borderLeft = merge(
+    border,
+    {
+        _cssBorderPropertyName: "borderLeft",
+    }
+);
 
-export const borderWidth = (...value) => {
-    return { borderWidth: formatUnitArrayValue(value) };
-};
+export const borderRight = merge(
+    border,
+    {
+        _cssBorderPropertyName: "borderRight",
+    }
+);
 
-export const borderRadius = (...value) => {
-    return { borderRadius: formatUnitValue.apply(this, value) };
-};
+export const borderTop = merge(
+    border,
+    {
+        _cssBorderPropertyName: "borderTop",
+    }
+);
 
-export const borderStyleDotted = borderStyle(borderStyles.dotted);
-export const borderStyleDashed = borderStyle(borderStyles.dashed);
-export const borderStyleSolid = borderStyle(borderStyles.solid);
-export const borderStyleDouble = borderStyle(borderStyles.double);
-export const borderStyleGroove = borderStyle(borderStyles.groove);
-export const borderStyleRidge = borderStyle(borderStyles.ridge);
-export const borderStyleInset = borderStyle(borderStyles.inset);
-export const borderStyleOutset = borderStyle(borderStyles.outset);
-export const borderStyleNone = borderStyle(borderStyles.none);
-export const borderStyleHidden = borderStyle(borderStyles.hidden);
+export const borderBottom = merge(
+    border,
+    {
+        _cssBorderPropertyName: "borderBottom",
+    }
+);
 
-
-export const border = (...value) => {
-    const result = {
-        border: formatBorderValue.apply(this, value)
-    };
-    return result;
-};
-
-export const borderNone = () => {
-    return border(borderStyles.none);
-}
-
-export const borderTop = (...value) => {
-    return {
-        borderTop: formatBorderValue.apply(this, value)
-    };
-};
-
-export const borderBottom = (...value) => {
-    return {
-        borderBottom: formatBorderValue.apply(this, value)
-    };
-};
-
-export const borderRight = (...value) => {
-    return {
-        borderRight: formatBorderValue.apply(this, value)
-    };
-};
-
-export const borderLeft = (...value) => {
-    return {
-        borderLeft: formatBorderValue.apply(this, value)
-    };
-};
-
-export const borderHorizontal = (...value) => {
-    return merge(
-        borderRight.apply(this, value),
-        borderLeft.apply(this, value),
-    );
-};
-
-export const borderVertical = (...value) => {
-    return merge(
-        borderTop.apply(this, value),
-        borderBottom.apply(this, value),
-    );
-};

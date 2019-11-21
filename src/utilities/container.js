@@ -7,50 +7,110 @@ export const container = {
     _paddingRight: 0,
     _paddingBottom: 0,
     _paddingLeft: 0,
-    padding: 0,
+    _marginTop: 0,
+    _marginRight: 0,
+    _marginBottom: 0,
+    _marginLeft: 0,
+
+    padding: function (value) {
+        return merge(this, {
+            _paddingTop: value,
+            _paddingRight: value,
+            _paddingBottom: value,
+            _paddingLeft: value,
+        }).formatPaddingValue();
+    },
+    topPadding: function (value) {
+        return merge(this, {
+            _paddingTop: value,
+        }).formatPaddingValue();
+    },
+
+    bottomPadding: function (value) {
+        return merge(this, {
+            _paddingBottom: value,
+        }).formatPaddingValue();
+    },
+
+    rightPadding: function (value) {
+        return merge(this, {
+            _paddingRight: value,
+        }).formatPaddingValue();
+    },
+
+    leftPadding: function (value) {
+        return merge(this, {
+            _paddingLeft: value,
+        }).formatPaddingValue();
+    },
+
+    xPadding: function (value) {
+        return merge(this, {
+            _paddingLeft: value,
+            _paddingRight: value,
+        }).formatPaddingValue();
+    },
+
+    yPadding: function (value) {
+        return merge(this, {
+            _paddingTop: value,
+            _paddingBottom: value,
+        }).formatPaddingValue();
+    },
 
     formatPaddingValue: function () {
         this.padding = formatUnitArrayValue([this._paddingTop, this._paddingRight, this._paddingBottom, this._paddingLeft]);
         return this;
     },
 
-    paddingAll: function (value) {
+    margin: function (value) {
         return merge(this, {
-            _paddingTop: value,
-            _paddingRight: value,
-            _paddingBottom: value,
-            _paddingLeft: value,
-        }).formatPaddingValue();
+            _marginTop: value,
+            _marginRight: value,
+            _marginBottom: value,
+            _marginLeft: value,
+        }).formatMarginValue();
     },
-    paddingTop: function (value) {
+    topMargin: function (value) {
         return merge(this, {
-            _paddingTop: value,
-        }).formatPaddingValue();
+            _marginTop: value,
+        }).formatMarginValue();
     },
 
-    paddingBottom: function (value) {
+    bottomMArgin: function (value) {
         return merge(this, {
-            _paddingBottom: value,
-        }).formatPaddingValue();
+            _marginBottom: value,
+        }).formatMarginValue();
     },
 
-    paddingRight: function (value) {
+    rightMargin: function (value) {
         return merge(this, {
-            _paddingLeft: value,
-        }).formatPaddingValue();
+            _marginRight: value,
+        }).formatMarginValue();
     },
 
-    paddingLeft: function (value) {
+    leftMargin: function (value) {
         return merge(this, {
-            _paddingRight: value,
-        }).formatPaddingValue();
+            _marginLeft: value,
+        }).formatMarginValue();
     },
 
-    paddingHorizontal: function (value) {
-        return this.paddingRight(value).paddingLeft(value);
+    xMargin: function (value) {
+        return merge(this, {
+            _marginLeft: value,
+            _marginRight: value,
+        }).formatMarginValue();
     },
 
-    paddingVertical: function (value) {
-        return this.paddingTop(value).paddingBottom(value);
+    yMargin: function (value) {
+        return merge(this, {
+            _marginTop: value,
+            _marginBottom: value,
+        }).formatMarginValue();
+    },
+
+    formatMarginValue: function () {
+        this.margin = formatUnitArrayValue([this._marginTop, this._marginRight, this._marginBottom, this._marginLeft]);
+        return this;
     },
 };
