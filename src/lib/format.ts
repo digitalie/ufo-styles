@@ -60,4 +60,3 @@ export const parseUnitValue = value => {
 
     return value;
 };
-
