@@ -1,5 +1,6 @@
 export default {
     config: {
+        units: "rem",
         isWeb: typeof document !== "undefined",
         isReactNative:
             typeof navigator !== "undefined" &&

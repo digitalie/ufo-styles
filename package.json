@@ -4,7 +4,8 @@
   "description": "Utility-first object-based styles",
   "main": "src/index.js",
   "scripts": {
-    "build": "echo 'built'",
+    "start": "tsc --watch",
+    "build": "tsc",
     "test": "jest",
     "lint": "eslint ."
   },

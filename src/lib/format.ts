@@ -27,7 +27,7 @@ export const formatColorValue = (...values) => {
     );
 };
 
-export const parseColorValue = (value) => {
+export const parseColorValue = value => {
     var matchColors = /rgba\((\d{1,3}), (\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
     var match = matchColors.exec(value);
     if (match !== null) {
@@ -55,7 +55,7 @@ export const formatUnitValue = value => {
 
 export const parseUnitValue = value => {
     if (isNaN(value) && value && ufo.config.units) {
-        return value.replace(ufo.config.units, '');
+        return value.replace(ufo.config.units, "");
     }
 
     return value;
