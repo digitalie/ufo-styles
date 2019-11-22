@@ -2,7 +2,8 @@
   "name": "@digitalie/ufo-styles",
   "version": "0.1.0",
   "description": "Utility-first object-based styles",
-  "main": "src/index.js",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "start": "tsc --watch",
     "build": "tsc",
@@ -33,5 +34,47 @@
     "prettier": "1.18.2",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.2"
+  },
+  "files": [
+    "/src",
+    "/dist",
+    "README.md",
+    "package.json"
+  ],
+  "jest": {
+    "testMatch": [
+      "**/?(*.)+(test).(ts|tsx)"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    }
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "targets": {
+            "node": "10"
+          }
+        }
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "jest",
+      "prettier"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:prettier/recommended"
+    ],
+    "env": {
+      "node": true,
+      "browser": true,
+      "jest/globals": true
+    }
   }
 }
